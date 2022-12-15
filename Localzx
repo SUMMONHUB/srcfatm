@@ -1,0 +1,237 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+
+local Tab = Windo∅w:NewTab("Main")
+
+local Section = Tab:NewSection("--- AUTO FARM ---")
+
+local Window = Library.CreateLib("NoName Hub", "DarkTheme")
+
+local Section = Tab:NewSection("Auto Equip")
+
+local Weaponlist = {}
+
+local Weapon = nil
+
+for i,v in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
+
+    table.insert(Weaponlist,v.Name)
+
+end
+
+Section:NewDropdown("select weapon", " ", Weaponlist, function(currentOption)
+
+    Weapon = currentOption
+
+end)
+
+Section:NewToggle("Auto Equip", " ", function(s)
+
+AutoEquiped = s
+
+end)
+
+spawn(function()
+
+while wait() do
+
+if AutoEquiped then
+
+pcall(function()
+
+game.Players.LocalPlayer.Character.Humanoid:EquipTool(game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(Weapon))
+
+end)
+
+end
+
+end
+
+end)
+
+Section:NewToggle("Fast attack", "?", function(a)
+
+(getgenv()).Config = {
+
+ ["FastAttack"] = a,
+
+ ["ClickAttack"] = a
+
+} 
+
+coroutine.wrap(function()
+
+local StopCamera = require(game.ReplicatedStorage.Util.CameraShaker)StopCamera:Stop()
+
+    for v,v in pairs(getreg()) do
+
+        if typeof(v) == "function" and getfenv(v).script == game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework then
+
+             for v,v in pairs(debug.getupvalues(v)) do
+
+                if typeof(v) == "table" then
+
+                    spawn(function()
+
+                        game:GetService("RunService").RenderStepped:Connect(function()
+
+                            if getgenv().Config['FastAttack'] then
+
+                                 pcall(function()
+
+                                     v.activeController.timeToNextAttack = -(math.huge^math.huge^math.huge)
+
+                                     v.activeController.attacking = false
+
+                                     v.activeController.increment = 4
+
+                                     v.activeController.blocking = false   
+
+                                     v.activeController.hitboxMagnitude = 150
+
+    		                         v.activeController.humanoid.AutoRotate = true
+
+    	                      	     v.activeController.focusStart = 0
+
+    	                      	     v.activeController.currentAttackTrack = 0
+
+                                     sethiddenproperty(game:GetService("Players").LocalPlayer, "SimulationRaxNerous", math.huge)
+
+                                 end)
+
+                             end
+
+                         end)
+
+                    end)
+
+                end
+
+            end
+
+        end
+
+    end
+
+end)();
+
+spawn(function()
+
+    game:GetService("RunService").RenderStepped:Connect(function()
+
+        if getgenv().Config['ClickAttack'] then
+
+             pcall(function()
+
+                game:GetService'VirtualUser':CaptureController()
+
+			    game:GetService'VirtualUser':Button1Down(Vector2.new(0,1,0,1))
+
+            end)
+
+        end
+
+    end)
+
+end)
+
+end)
+
+Section:NewToggle("Auto Farm", "?", function(b)
+
+_G.Farm = b
+
+function CheckQuest()
+
+   local Lv = game.Players.LocalPlayer.Data.Level.Value
+
+    ถ้า Lv == 1 หรือ Lv <= 9999 แล้ว
+
+    Ms = "โจร [Lv. 5]"
+
+    NM = "โจร"
+
+    LQ = 1
+
+    NQ = "BanditQuest1"
+
+    CQ = CFrame.new(1059.0523681640625, 16.424299240112305, 1547.887451171875)
+
+    จบ
+
+จบ
+
+ฟังก์ชัน TP(P)
+
+    ระยะทาง = (P.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
+
+    ถ้าระยะทาง < 10 แล้ว
+
+        ความเร็ว = 1,000
+
+    อื่นถ้าระยะทาง < 170 แล้ว
+
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = P
+
+        ความเร็ว = 350
+
+    อื่นถ้าระยะทาง < 1,000 แล้ว
+
+        ความเร็ว = 350
+
+    อื่นถ้าระยะทาง>= 1,000 แล้ว
+
+        ความเร็ว = 300
+
+    จบ
+
+    เกม:GetService("TweenService"):สร้าง(
+
+        game.Players.LocalPlayer.Character.HumanoidRootPart,
+
+        TweenInfo.new (ระยะทาง/ความเร็ว, Enum.EasingStyle.Linear),
+
+        {ซีเฟรม = P}
+
+    ):เล่น()
+
+จบ
+
+วางไข่ (ฟังก์ชั่น ()
+
+   ในขณะที่ task.wait() ทำ
+
+       ถ้า_G.Farmแล้ว
+
+           เช็คเควสต์()
+
+           ถ้า game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == เท็จ แล้ว
+
+                ทีพี(CQ)
+
+                รอ (0.9)
+
+                เกม:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest",NQ,LQ)
+
+                เกมอื่น: GetService ("ผู้เล่น") LocalPlayer.PlayerGui.Main.Quest.Visible == จริงแล้ว
+
+                    สำหรับ i,v in pair(game:GetService("Workspace").Enemies:Get Children()) do
+
+                        ถ้า v.Name == Ms แล้ว
+
+                        TP(v.HumanoidRootPart.CFrame * CFrame.new(0,20,0))
+
+                        v.HumanoidRootPart.Size = Vector3.new(60,60,60)
+
+                    จบ
+
+                จบ
+
+            จบ
+
+        จบ
+
+    จบ
+
+จบ)
+
+...
